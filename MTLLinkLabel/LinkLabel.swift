@@ -316,7 +316,14 @@ open class LinkLabel: UILabel {
         if let attributedString = self.attributedText {
             let ma = NSMutableAttributedString(attributedString: attributedString)
             
+            // Append font
             ma.addAttribute(NSFontAttributeName, value: self.font, range: NSMakeRange(0, (ma.string as NSString).length))
+            
+            // Append alignment
+            let paragraph = NSMutableParagraphStyle()
+            paragraph.alignment = self.textAlignment
+            ma.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: NSMakeRange(0, (ma.string as NSString).length))
+            
             self.textStorage = NSTextStorage(attributedString: ma)
         }
         else {
